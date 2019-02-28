@@ -68,114 +68,46 @@ $(function () {
           .attr({ src: pics[0].md })
 
         //第一张图片的大图片应该放在隐藏的大div中
-        $divLg=$("#div-lg")
-        .attr({src:pics[0].lg});
+        $divLg = $("#div-lg")
+          .attr({ src: pics[0].lg });
 
 
         //2. 点击左右按钮，让ul左右移动
         //查找两个按钮:
-        var $btnLeft=$("#preview>div>div>img:first");
-        var $btnRight=$btnLeft.next().next();
-        if(pics.length<4){
+        var $btnLeft = $("#preview>div>div>img:first");
+        var $btnRight = $btnLeft.next().next();
+        if (pics.length <= 4) {
           $btnRight.addClass("disabled")
         }
-        var moved=0;
-        $btnRight.click(function(){
-          moved++;
-          $ul.css({marginLeft:-62*moved})
+        var moved = 0;
+        $btnRight.click(function () {
+          if ($(this).is(":not(.disabled)")) {
+            moved++;
+            $ul.css({ marginLeft: -62 * moved })
+            $btnLeft.removeClasss("disabled")
+            if (moved + 4 == pics.length) {
+              $btnRight.addClass("disabled")
+            }
+          }
         })
-        $btnLeft.click(function(){
-          moved--;
-          $ul.css({marginLeft:-62*moved})
+        $btnLeft.click(function () {
+          if ($(this).is(":not(.disabled)")) {
+            moved--;
+            $ul.css({ marginLeft: -62 * moved })
+            $btnRight.removeClasss("disabled")
+            if (moved == 0) {
+              $btnLeft.addClass("disabled")
+            }
+          }
         })
-
-        //如果pics的图片张数<=4张
-
-        //右边按钮禁用
-
-
-        //记录左移的次数
-        //点击右边按钮，ul向左移动一次
-
-        //只有当前按钮不是.disabled
-
-        //左移的次数+1
-        //设置ul的margin-left永远等于li的宽 -62*左移的次数moved
-
-        //启用左边按钮
-
-        //如果左移的张数+4张刚好==图片总数
-
-        //禁用右边按钮
-
-
-
-
-        //点击左边按钮，ul向右移动一次
-
-        //只有当前按钮不是.disabled
-
-        //左移的次数-1
-
-
-
-
-
-
 
         //3. 鼠标移入小图片img，切换中图片和大图片
         //利用冒泡：事件绑定在$ul上，只允许img元素触发事件
 
-        //获得当前img
-        //获取当前img上的data-md属性
-
-        //修改中图片的src
-        //获取当前img上的data-lg属性
-
-
-        //修改大图片的backgroundImage
-
-
         //4. 鼠标进入superMask，显示遮罩层和大图片
         //   鼠标移出superMask，隐藏遮罩层和大图片
 
-
-        //superMask352-mask176
-
-        /*.mouseenter(function(){
-          $mask.removeClass("d-none");
-          $divLg.removeClass("d-none");
-        })
-        .mouseleave(function(){
-          $mask.addClass("d-none");
-          $divLg.addClass("d-none");
-        })*/
-        /*.hover(
-          function(){
-            $mask.removeClass("d-none");
-            $divLg.removeClass("d-none");
-          },
-          function(){
-            $mask.addClass("d-none");
-            $divLg.addClass("d-none");
-          }
-        )*/
-
-
-
-
         //5. mask跟随鼠标移动，并同步移动大div的背景图片位置
-
-
-
-
-
-
-
-
-
-
-
 
       }
     })

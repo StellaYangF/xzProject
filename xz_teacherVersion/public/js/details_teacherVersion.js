@@ -29,7 +29,7 @@ $(function () {
           .find("div>h2")//第一个子div下的h2
           .html("¥" + product.price.toFixed(2))
           //第一个子div下的h2
-          .parent().next()//第二个子div
+          .parent().next()//第二个子div+
           .children().last()//第二个子div中最后一个span
           .html(product.promise);
 
